@@ -1,0 +1,14 @@
+[
+    {
+        "date": "02-27",
+        "event_type": "Birthday",
+        "person_name": "Aunt Marry",
+        "description": "Description about said Aunt Marry"
+    },
+    {
+        "date": "04-21",
+        "event_type": "Name day",
+        "person_name": "Uncle Ben",
+        "description": "Description about wonders of name days.."
+    }
+]

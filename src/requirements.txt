@@ -1,0 +1,2 @@
+pip install python-dateutil
+python 3.7.0 (probably lower works fine too)
