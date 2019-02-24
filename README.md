@@ -22,9 +22,9 @@ or when you want to change parameters:
 make run wait=5 deadline=7
 ```
 * Wait - seconds before it closes.
-* Deadline - days before event reminds you of something.
+* Deadline - days before event triggers reminder.
 
-You can also clean any cache files usying though it was written for Windows only:
+You can also clean any cache files usying makefile though it was written for Windows only:
 ```
 make clean
 ```
