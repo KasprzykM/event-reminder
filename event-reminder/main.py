@@ -1,12 +1,10 @@
 import sys
 import json
 import time
+import argparse
 from events import Event
 from datetime import date
 from dateutil.parser import parse
-
-WAIT_TIME = int(sys.argv[2]) if len(sys.argv) >= 3 else 4
-DEADLINE_THRESHOLD = int(sys.argv[3]) if len(sys.argv) >= 4 else 7
 
 
 def load_file(path):
@@ -16,7 +14,6 @@ def load_file(path):
         else:
             print("Unsupported file format")
             quit()
-
 
 def parse_json(data_file):
     data = json.load(data_file)
@@ -28,26 +25,25 @@ def parse_json(data_file):
         events.append(event)
     return events
 
-
-def check_dates(events):
+def check_dates(events, wait_time, deadline_threshold):
     today = date.today()
     event_found = False
     for event in events:
         remaining_days = event.days_to_deadline(today)
-        if remaining_days <= DEADLINE_THRESHOLD and remaining_days >= 0:
+        if remaining_days <= deadline_threshold and remaining_days >= 0:
             input(event)
             event_found = True
 
     if not event_found:
         print("No upcoming events")
-        time.sleep(WAIT_TIME)
-
+        time.sleep(wait_time)
 
 if __name__ == "__main__":
-    if len(sys.argv) == 1:
-        print("No file path in argument")
-        time.sleep(WAIT_TIME)
-        quit()
-    events_list = load_file(sys.argv[1])
-    check_dates(events_list)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--filepath", help="specify path to data file", required=True)
+    parser.add_argument("--wait_time", help="time to wait before window disappears", type=int, default=4)
+    parser.add_argument("--deadline", help="how many days before event to set reminder for", type=int, default=7)
+    args = parser.parse_args()
+    events_list = load_file(path=args.filepath)
+    check_dates(events=events_list, wait_time=args.wait_time, deadline_threshold=args.deadline)
     quit()
