@@ -13,21 +13,16 @@ pip install python-dateutil
 
 ## How it works
 
-Fill in json however you please by given example then simply run the program usying makefile with command
+Fill in json however you please by given example then simply run the program using provided batchfile with command
 ```
-make run
+run
 ```
-or when you want to change parameters:
-```
-make run wait=5 deadline=7
-```
-* Wait - seconds before it closes.
-* Deadline - days before event triggers reminder.
 
-You can also clean any cache files usying makefile though it was written for Windows only:
+Or if you wish to provide different path and wait(before disappearing) or deadline(when said event is supposed to be reminded) use
 ```
-make clean
+python --filepath=YOUR_PATH --wait_time=YOUR_WAIT_TIME --deadline=YOUR_DEADLINE
 ```
+
 
 ## Okay but whats the point?
 
